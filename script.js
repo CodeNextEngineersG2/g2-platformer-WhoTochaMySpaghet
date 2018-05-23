@@ -16,7 +16,7 @@ var playerStartX, playerStartY;
 var monsters; // p5.play sprite group
 var monsterWalkAnimation;
 var monsterDefeatImage;
-var zombies;
+
 // Other Game Object Variables
 var collectables;
 var collectableImage;
@@ -35,6 +35,17 @@ var currentJumpTime;
 var millis, deltaMillis;
 var gamePaused;
 
+//zombie variables
+var zombies;
+var zombiesIdleAnimation, zombiesWalkAnimation, zombiesAttackAnimation, zombiesDefeatAnimation;
+
+//shinobi variables
+var shinobiIdleAnimation;
+var shinobiWalkAnimation;
+var shinobiAttackAnimation;
+var shinobiDefeatAnimation;
+var shinobiClimbAnimation;
+var shinobiDefeatAnimation;
 // This allows the player to press any of the arrow keys (as well as spacebar, just
 // in case you wanted to program that eventually) without interfering with the
 // browser window.
@@ -60,17 +71,32 @@ function preload() {
   playerRunAnimation = loadAnimation("assets/img/kunoichi/Run__000.png", "assets/img/kunoichi/Run__009.png");
   playerJumpAnimation = loadAnimation("assets/img/kunoichi/Jump__004.png");
   playerFallAnimation = loadAnimation("assets/img/kunoichi/Jump__009.png");
-
+  playerDeadAnimation = loadAnimation("assets/img/kunoichi/Dead_008.png");
+  playerGlideAnimation = loadAnimation("assets/img/kunoichi/Glide_003.png");
+  
   // load monster animations
   monsterWalkAnimation = loadAnimation("assets/img/monster/frame-1.png", "assets/img/monster/frame-10.png");
   monsterDefeatImage = loadImage("assets/img/monster/defeat-frame-3.png");
-  zombieWalkAnimation = loadAnimation("assets/img/zombie/Walk (4).png");
-  zombieDefeatImage = loadImage("assets/img/zombie/Dead (2).png");
+ 
   // load other game object images
   collectableImage = loadImage("assets/img/kunoichi/Kunai.png");
   goalImage = loadImage("assets/img/objects/Goal.png");
-}
 
+/*laod zombie animations
+zombieIdleAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+zombieAttackAnimation = loadAnimation("assets/img/zombie/Attack (6).png");
+zombieWalkAnimation = loadAnimation("assets/img/zombie/Walk (2).png");
+zombieDefeatImage = loadImage("assets/img/zombie/Dead (6).png");
+*/
+
+/*load shinobi animations
+shinobiIdleAnimation = loadAnimation("assets/img/shinobi/Idle (12).png");
+shinobiWalkAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+shinobiAttackAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+shinobiDefeatAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+shinobiClimbAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+shinobiDefeatAnimation = loadAnimation("assets/img/zombie/Idle (12).png");
+*/
 function setup() {
   gameScreen = createCanvas(1280, 
     20);
@@ -221,7 +247,7 @@ function createCollectable(x, y) {
   //collectable.debug = true;
 }
 
-function createZombie(x , y){
+/*function createZombie(x , y){
   var zombie = createSprite(x, y, 0, 0);
   zombie.addToGroup(zombies);
   zombie.addAnimation("walk", WalkAnimation).loop = true;
@@ -236,7 +262,7 @@ function createZombie(x , y){
     zombie.mirrorX(1);
   }
 }
-
+*/
 // Applies gravity to player and monsters. Also checks if either of them
 // have fallen off the screen. If a player has fallen off the screen, this
 // function calls executeLoss(). If a monster falls off the screen, it is
@@ -447,4 +473,4 @@ function executeWin() {
 function executeLoss() {
     noLoop();
     setTimeout(resetGame, 1000);
-}
+}}
